@@ -1,0 +1,5 @@
+git laravel key : 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
+
+
+#avoir l'addresse de la connexion à mysql sur wsl
+cat /etc/resolv.conf | grep nameserver
