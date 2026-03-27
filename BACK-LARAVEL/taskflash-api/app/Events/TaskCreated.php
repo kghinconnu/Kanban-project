@@ -29,4 +29,8 @@ class TaskCreated implements ShouldBroadcastNow
     {
         return ['task' => $this->task];
     }
+    public function broadcastAs(): string
+{
+    return 'TaskCreated'; 
+}
 }

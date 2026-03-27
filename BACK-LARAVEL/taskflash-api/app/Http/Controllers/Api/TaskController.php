@@ -39,7 +39,7 @@ class TaskController extends Controller
 
         $task = $project->tasks()->create($data);
         $task->load('claimedBy:id,name,avatar');
-
+          broadcast(new TaskCreatedEvent($task))->toOthers();
         return response()->json($task, 201);
     }
 
@@ -53,7 +53,7 @@ class TaskController extends Controller
 
         $task->update(['claimed_by' => $request->user()->id]);
         $task->load('claimedBy:id,name,avatar');
-
+         broadcast(new TaskClaimed($task))->toOthers();
         return response()->json($task);
     }
 
@@ -67,7 +67,7 @@ class TaskController extends Controller
 
         $task->update(['claimed_by' => null]);
         $task->load('claimedBy:id,name,avatar');
-
+        broadcast(new TaskReleased($task))->toOthers();
         return response()->json($task);
     }
 
@@ -81,15 +81,17 @@ class TaskController extends Controller
 
         $task->update($data);
         $task->load('claimedBy:id,name,avatar');
-
+       broadcast(new TaskMoved($task))->toOthers();
         return response()->json($task);
     }
 
     public function destroy(Request $request, Task $task)
     {
         $this->checkMember($request, $task->project);
+        $taskId = $task->id;
+        $groupId = $task->project->group_id;
         $task->delete();
-
+        broadcast(new TaskDeletedEvent($taskId, $groupId))->toOthers();
         return response()->json(['message' => 'Tâche supprimée.']);
     }
 

@@ -26,4 +26,8 @@ class TaskReleased implements ShouldBroadcastNow
     {
         return ['task' => $this->task];
     }
+    public function broadcastAs(): string
+{
+    return 'TaskReleased';
+}
 }

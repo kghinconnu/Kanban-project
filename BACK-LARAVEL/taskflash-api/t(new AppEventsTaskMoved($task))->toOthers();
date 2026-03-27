@@ -1,0 +1,12 @@
+[90m= [39m[34;4mApp\Models\Task[39;24m {#6127
+    [34mid[39m: [35m1[39m,
+    [34mtitle[39m: "[32mtache 1[39m",
+    [34mdescription[39m: "[32mpremiere description UX[39m",
+    [34mstatus[39m: "[32mtodo[39m",
+    [34mtag[39m: "[32mux[39m",
+    [34mproject_id[39m: [35m1[39m,
+    [34mclaimed_by[39m: [35m1[39m,
+    [34mcreated_at[39m: "[32m2026-03-24 07:07:08[39m",
+    [34mupdated_at[39m: "[32m2026-03-26 07:26:10[39m",
+  }
+

@@ -11,8 +11,8 @@ export function getEcho() {
       broadcaster: 'reverb',
       key: import.meta.env.VITE_REVERB_APP_KEY,
       wsHost: import.meta.env.VITE_REVERB_HOST,
-      wsPort: Number(import.meta.env.VITE_REVERB_PORT),
-      wssPort: Number(import.meta.env.VITE_REVERB_PORT),
+      wsPort: 8080, 
+      wssPort: 8080,
       forceTLS: false,
       enabledTransports: ['ws'],
       authorizer: (channel) => {
@@ -31,7 +31,10 @@ export function getEcho() {
                 channel_name: channel.name,
               }),
             })
-              .then(res => res.json())
+              .then(res => {
+                if (!res.ok) throw new Error('Erreur d\'authentification');
+                return res.json();
+              })
               .then(data => callback(null, data))
               .catch(err => callback(err))
           }

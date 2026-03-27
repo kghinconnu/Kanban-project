@@ -35,6 +35,8 @@ const useTaskStore = create((set, get) => ({
   },
 
   claimTask: async (taskId, projectId) => {
+    const task = get().tasks[projectId]?.find(t => t.id === taskId);
+    if (task?.claimed_by) return;
     const res = await api.patch(`/tasks/${taskId}/claim`)
     set((s) => ({
       tasks: {

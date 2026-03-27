@@ -28,4 +28,8 @@ class TaskDeleted implements ShouldBroadcastNow
     {
         return ['task_id' => $this->taskId];
     }
+    public function broadcastAs(): string
+{
+    return 'TaskDeleted'; // Fais pareil pour TaskClaimed, TaskMoved, etc.
+}
 }
