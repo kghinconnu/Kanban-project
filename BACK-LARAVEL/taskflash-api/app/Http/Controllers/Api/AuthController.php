@@ -66,4 +66,15 @@ class AuthController extends Controller
     {
         return response()->json($request->user());
     }
+    public function updateProfile(Request $request)
+{
+    $data = $request->validate([
+        'name'   => 'sometimes|string|max:255',
+        'avatar' => 'nullable|string',
+    ]);
+
+    $request->user()->update($data);
+
+    return response()->json($request->user()->fresh());
+}
 }

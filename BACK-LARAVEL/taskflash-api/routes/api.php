@@ -18,6 +18,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // Auth
     Route::get('/auth/me',      [AuthController::class, 'me']);
     Route::post('/auth/logout', [AuthController::class, 'logout']);
+    Route::patch('/auth/profile', [AuthController::class, 'updateProfile']);
 
     // Groupes
     Route::get('/groups',               [GroupController::class, 'index']);
@@ -38,5 +39,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::patch('/tasks/{task}/release',    [TaskController::class, 'release']);
     Route::patch('/tasks/{task}/move',       [TaskController::class, 'move']);
     Route::delete('/tasks/{task}',           [TaskController::class, 'destroy']);
+    Route::patch('/tasks/{task}', [TaskController::class, 'update']);
 
 });

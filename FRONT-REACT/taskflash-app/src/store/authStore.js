@@ -2,14 +2,12 @@ import { create } from 'zustand'
 import api from '../api/axios'
 import { resetEcho } from '../lib/echo'
 
-
 const useAuthStore = create((set) => ({
   user: null,
   token: localStorage.getItem('token') || null,
   isLoading: false,
   error: null,
 
-  // Inscription
   register: async (name, email, password, passwordConfirmation) => {
     set({ isLoading: true, error: null })
     try {
@@ -28,7 +26,6 @@ const useAuthStore = create((set) => ({
     }
   },
 
-  // Connexion
   login: async (email, password) => {
     set({ isLoading: true, error: null })
     try {
@@ -42,7 +39,6 @@ const useAuthStore = create((set) => ({
     }
   },
 
-  // Récupérer le profil au chargement
   fetchMe: async () => {
     try {
       const res = await api.get('/auth/me')
@@ -53,16 +49,15 @@ const useAuthStore = create((set) => ({
     }
   },
 
-  // Déconnexion
- logout: async () => {
-  try {
-    await api.post('/auth/logout')
-  } finally {
-    localStorage.removeItem('token')
-    resetEcho()
-    set({ user: null, token: null })
-  }
-},
+  logout: async () => {
+    try {
+      await api.post('/auth/logout')
+    } finally {
+      localStorage.removeItem('token')
+      resetEcho()
+      set({ user: null, token: null })
+    }
+  },
 }))
 
 export default useAuthStore

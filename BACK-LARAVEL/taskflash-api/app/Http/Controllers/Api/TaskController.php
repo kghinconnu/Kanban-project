@@ -106,5 +106,21 @@ class TaskController extends Controller
                             ->exists();
         if (! $isMember) abort(403, 'Accès refusé.');
     }
-    
+    public function update(Request $request, Task $task)
+{
+    $this->checkMember($request, $task->project);
+
+    $data = $request->validate([
+        'title'       => 'sometimes|string|max:255',
+        'description' => 'nullable|string',
+        'tag'         => 'nullable|in:bug,feat,ux,infra,data',
+    ]);
+
+    $task->update($data);
+    $task->load('claimedBy:id,name,avatar');
+
+    broadcast(new TaskMoved($task))->toOthers();
+
+    return response()->json($task);
+}
 }

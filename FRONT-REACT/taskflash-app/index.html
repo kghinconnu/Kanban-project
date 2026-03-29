@@ -1,13 +1,39 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>taskflash-app</title>
+    <title>TaskFlash</title>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+
+    <style>
+  :root { color-scheme: dark; }
+  .light {
+    color-scheme: light;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-nav: rgba(255,255,255,0.8);
+    --border: rgba(0,0,0,0.08);
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+    --card-bg: #ffffff;
+    --card-border: rgba(0,0,0,0.06);
+  }
+  .dark {
+    --bg-primary: #020617;
+    --bg-secondary: #0f172a;
+    --bg-nav: rgba(15,23,42,0.8);
+    --border: rgba(255,255,255,0.05);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --card-bg: rgba(30,41,59,0.5);
+    --card-border: rgba(255,255,255,0.05);
+  }
+</style>
   </body>
 </html>
